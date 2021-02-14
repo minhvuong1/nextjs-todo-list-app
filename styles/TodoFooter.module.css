@@ -1,0 +1,49 @@
+.formFooter {
+    padding: 16px 16px 16px 2%;
+    background: rgba(0, 0, 0, 0.003);
+    box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+    background-color: white;
+    max-width: 650px;
+    width: 97%;
+    font-size: 14px;
+    font-weight: 100;
+    font-family: sans-serif;
+    border: 1px solid rgb(240, 240, 240);
+    color: #747474;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 auto;
+}
+
+.formFooter a {
+    cursor: pointer;
+}
+
+.formFooter a:hover {
+    border: 1px solid #ebb2b4;
+    border-radius: 5px;
+}
+
+.status {
+    border: 1px solid #ebb2b4;
+    border-radius: 5px;
+}
+
+.todoToggles {
+    margin-right: 10px;
+    padding: 0;
+}
+
+.todoToggles a {
+    padding: 3px 7px;
+    margin: 10px;
+}
+
+.clearCompleted {
+    text-align: right;
+    cursor: pointer;
+}
+
+.clearCompleted:hover {
+    text-decoration: underline;
+}

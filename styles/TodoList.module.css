@@ -1,0 +1,76 @@
+.todoList {
+    list-style: none;
+    padding: 0;
+    width: 97%;
+    margin: 0 auto;
+}
+
+.todoItem {
+    box-sizing: border-box;
+    padding: 16px 20px;
+    background: rgb(240, 240, 240);
+    background-color: white;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 100;
+    font-family: sans-serif;
+    border: 1px solid rgb(240, 240, 240);
+    max-width: 650px;
+    margin: -1px auto 0 auto;
+    
+}
+
+.completed {
+    text-decoration: line-through;
+    color: rgb(215, 215, 215);
+}
+
+.round {
+    float: left
+}
+  
+.round label {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 28px;
+    width: 28px;
+    float: left;
+}
+
+.roundCompleted label {
+    background-color: rgb(230, 230, 230);
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 28px;
+    width: 28px;
+    float: left;
+}
+
+.round input[type="checkbox"] {
+    visibility: hidden;
+}
+
+.round input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+}
+
+.textAndDeleteContainer {
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+}
+
+.todoItemText {
+    margin: 0;
+    padding: 0;
+}
+
+.deleteButton {
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: rgba(148, 20, 20, 0.274);
+    font-style: normal;
+  }

@@ -1,65 +1,62 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import React, { useState, useEffect } from 'react'
+import Form from '../components/Form';
+import TodoList from '../components/TodoList';
+import TodoFooter from '../components/TodoFooter';
 
 export default function Home() {
+  const [userInput, setUserInput] = useState('');
+  const [todos, setTodos] = useState([]);
+  const [status, setStatus] = useState('all');
+  const [filteredTodos, setFilteredTodos] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+
+  const numOfItemsRemaining = todos.filter(todo => todo.completed === false).length
+
+  const numOfItemsCompleted = todos.length - numOfItemsRemaining;
+
+  useEffect(() => {
+    filterHandler();
+  }, [todos, status]) // rerun the function every time the 'todos' or 'status' state value changes
+
+  const filterHandler = () => {
+    switch(status) {
+      case 'completed':
+        setFilteredTodos(todos.filter(todo => todo.completed === true));
+        break;
+      case 'active':
+        setFilteredTodos(todos.filter(todo => todo.completed === false));
+        break;
+      default:
+        setFilteredTodos(todos);
+        break;
+    }
+  }
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>To Do App</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <h1 className={styles.heading}>todos</h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+      <Form 
+        todos={todos} 
+        setTodos={setTodos} 
+        setUserInput={setUserInput} 
+        userInput={userInput}
+        selectAll={selectAll}
+        setSelectAll={setSelectAll}
+        numOfItemsCompleted={numOfItemsCompleted}
+      /> 
+    
+      <TodoList todos={todos} setTodos={setTodos} filteredTodos={filteredTodos} />
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      <TodoFooter numOfItemsRemaining={numOfItemsRemaining} status={status} setStatus={setStatus} setTodos={setTodos} todos={todos} numOfItemsCompleted={numOfItemsCompleted} />
     </div>
   )
 }
