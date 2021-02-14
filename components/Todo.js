@@ -24,8 +24,10 @@ const Todo = ({text, id, todos, setTodos, todo}) => {
                         <label onClick={completeHandler} htmlFor="checkbox"></label>
                     </div>
                     <div className={styles.textAndDeleteContainer}>
-                        <p className={`${styles.todoItemText} ${todo.completed ? styles.completed : ""}`}>{text}</p>
-                        <span className={styles.deleteButton} onClick={deleteHandler}><i class="fa fa-times" aria-hidden="true"></i></span>
+                        <div contentEditable="true" className={`${styles.todoItemText} ${todo.completed ? styles.completed : ""}`}>
+                            {text}
+                        </div>
+                        <span className={styles.deleteButton} onClick={deleteHandler}><i className="fa fa-times" aria-hidden="true"></i></span>
                     </div>
             </li>
     )
