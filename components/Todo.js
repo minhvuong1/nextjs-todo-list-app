@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../styles/TodoList.module.css'
 
 const Todo = ({text, id, todos, setTodos, todo}) => {
-    const deleteHandler = () => {        // 'todo' is the one currently being clicked on
+    const deleteHandler = () => {        
         setTodos(todos.filter(el => el.id !== todo.id))
     }
 

@@ -14,7 +14,6 @@ function TodoForm({ todos, setTodos, setUserInput, userInput, numOfItemsComplete
                 ...todos, {text: userInput, completed: false, id: Math.random() * 1000}
             ])
         }
-        console.log(todos)
         setUserInput('');
     }
 
